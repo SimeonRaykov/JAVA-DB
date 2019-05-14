@@ -1,0 +1,59 @@
+CREATE SCHEMA `Movies`;
+USE `Movies`;
+
+CREATE TABLE `directors`(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`director_name` VARCHAR(45) NOT NULL,
+`notes` TEXT
+);
+
+CREATE TABLE `genres`(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`genre_name` VARCHAR(45),
+`notes` TEXT
+);
+CREATE TABLE `categories`(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`category_name` VARCHAR(45),
+`notes` TEXT
+);
+
+CREATE TABLE `movies`(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`title` VARCHAR(45) NOT NULL UNIQUE,
+`director_id` INT UNIQUE NOT NULL,
+`copyright_year` INT(4),
+`length` INT NOT NULL,
+`genre_id` INT UNIQUE NOT NULL,
+`category_id` INT UNIQUE NOT NULL,
+`rating` DECIMAL,
+`notes` TEXT
+);
+
+INSERT INTO `directors`
+VALUES(1,'Toni',NULL)
+,(2,'Moni',NULL)
+,(3,'Kaloyan','Notes here')
+,(4,'Martin','Notes there')
+,(5,'Alex',NULL);
+
+INSERT INTO `categories`
+VALUES(1,'horror','very scary')
+,(2,'action','just action')
+,(3,'western',NULL)
+,(4,'romantic',NULL)
+,(5,'history',NULL);
+
+INSERT INTO `genres`
+VALUES(1,'horror','very scary')
+,(2,'top','just action')
+,(3,'western',NULL)
+,(4,'romantic',NULL)
+,(5,'history',NULL);
+
+INSERT INTO `movies`
+VALUES(1,'Strashen film',56,2004,35,1,2,4.5,NULL)
+,(2,'Very bad movie',2,1994,88,1,2,9,NULL)
+,(3,'Middle movie',3,2010,15,1,2,3.5,NULL)
+,(4,'Best movie',4,2015,25,1,2,6,NULL)
+,(5,'Horror',5,2017,85,1,2,5,NULL);

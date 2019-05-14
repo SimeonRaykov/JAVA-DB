@@ -1,0 +1,19 @@
+USE `minions`;
+CREATE TABLE `users`(
+`id` INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+`username` VARCHAR(30) NOT NULL,
+`password` VARCHAR(26) NOT NULL,
+`profile_picture` BLOB,
+`last_login_time` DATETIME,
+`is_deleted` VARCHAR(5)
+);
+ 
+ALTER TABLE `users`
+ADD CONSTRAINT `check_is_deleted` CHECK (is_deleted='true' OR is_deleted = 'false');
+
+INSERT INTO `users`
+VALUES(1,123,'123','55ff','1990-02-12','false')
+,(2,123,'133','55ff','1990-02-12','true')
+,(3,134343,'333','55ff','1999-02-12','true')
+,(4,123,'123','55ff','2010-05-12','false')
+,(5,123,'123','55ff','2015-03-12','false');

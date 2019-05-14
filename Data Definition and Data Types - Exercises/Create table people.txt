@@ -1,0 +1,23 @@
+CREATE TABLE `people`(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`name` VARCHAR(200) NOT NULL,
+`picture` MEDIUMBLOB,
+`height` DECIMAL,
+`weight` DECIMAL,
+`gender` CHAR(1),
+`birthdate`DATE NOT NULL,
+`biography` TEXT 
+);
+
+ALTER TABLE `people`
+ADD CONSTRAINT `check_gender` CHECK (gender='m' OR gender = 'f');
+
+select cast(`height` as decimal(10,2))
+ from `people`;
+ 
+ select cast(`weight` as decimal(10,2))
+ from `people`;
+ 
+ INSERT INTO `people`
+ VALUES(1,'Petur',222,12.5,13.5,'m','2008-7-04',NULL);
+ 
