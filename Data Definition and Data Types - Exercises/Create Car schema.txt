@@ -1,0 +1,96 @@
+CREATE SCHEMA `car_rental`;
+USE `car_rental`;
+CREATE TABLE `categories`(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`category` VARCHAR(45) NOT NULL,
+`daily_rate` DOUBLE NOT NULL,
+`weekly_rate` DOUBLE NOT NULL,
+`monthly_rate` DOUBLE NOT NULL,
+`weekend_rate` DOUBLE NOT NULL
+);
+CREATE TABLE `cars`(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`plate_number` VARCHAR(8) UNIQUE NOT NULL,
+`make` VARCHAR(45) NOT NULL,
+`model` VARCHAR(45) NOT NULL,
+`car_year` INT(4) NOT NULL,
+`category_id` INT NOT NULL,
+`doors` INT NOT NULL,
+`picture` BLOB,
+`car_condition` VARCHAR(45) NOT NULL,
+`available` BIT NOT NULL
+);
+
+CREATE TABLE `employees`(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`first_name` VARCHAR(45) NOT NULL,
+`last_name` VARCHAR(45) NOT NULL,
+`title` VARCHAR(45),
+`notes` TEXT
+);
+
+CREATE TABLE `customers`(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`driver_license_number` INT NOT NULL UNIQUE,
+`full_name` VARCHAR(45) NOT NULL UNIQUE,
+`address` VARCHAR(45) NOT NULL,
+`city` VARCHAR(45) NOT NULL,
+`zip_code` INT,
+`notes` TEXT
+);
+
+CREATE TABLE `rental_orders`(
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`employee_id` INT NOT NULL,
+`customer_id` INT NOT NULL,
+`car_id` INT NOT NULL,
+`car_condition` VARCHAR(45) NOT NULL,
+`tank_level` VARCHAR(45) NOT NULL,
+`kilometrage_start` INT NOT NULL,
+`kilometrage_end` INT NOT NULL,
+`total_kilometrage` INT NOT NULL,
+`start_date` DATE NOT NULL,
+`end_date` DATE NOT NULL,
+`total_days` INT NOT NULL,
+`rate_applied` DOUBLE NOT NULL,
+`tax_rate` DOUBLE NOT NULL,
+`ORDER_STATUS` BIT NOT NULL,
+`NOTES`TEXT
+);
+
+INSERT INTO `cars`
+VALUES (1,'CB1111MC','BMW','E60',2008,1,4,NULL,'very good',1)
+,(2,'CBCCBCB','Reno','Clio',2002,2,4,NULL,'good',0)
+,(3,'CB7878CC','Mercedes-Benz','W211',2007,3,4,NULL,'very good',1); 
+
+INSERT INTO `employees`
+VALUES(1,'Martin','Paunov',NULL,'top employee')
+,(2,'Simeon','Raykov',NULL,NULL)
+,(3,'Kaloyan','Petrov','CEO',NULL);
+
+INSERT INTO `categories`
+VALUES(1,'comfort',100,600,3000,150),
+(2,'sport',500,2000,7000,800),
+(3,'super-sport',1000,6000,25000,1800);
+
+INSERT INTO `customers`
+VALUES(
+1,12323,'Kaloyan Petrov Petrov','15 Bul.Bulgaria','Sofia',NULL,NULL
+),
+(
+2,23233,'Galin Georgi Petrov','20 Bul.Cherni Vruh','Sofia',1517,NULL
+),
+(
+3,44112,'Simeon Georgi Georgiev','11 ul.Mlechen Put','Plovdiv',NULL,'very good customer'
+);
+
+INSERT INTO `rental_orders`
+VALUES(
+1,1,1,3,'very good','high',1000,2000,3000,'2018-08-15','2018-08-20',5,250,50,1,NULL
+),
+(
+2,2,2,2,'good','med',600,1800,2500,'2019-02-25','2019-03-25',30,150,20,1,NULL
+),
+(
+3,3,3,1,'very good','low',500,1200,3000,'2015-10-15','2015-12-15',61,600,200,1,NULL
+);
