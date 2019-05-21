@@ -1,0 +1,7 @@
+SELECT `town_id`,`name`
+FROM `towns`
+WHERE `name` LIKE 'm%' 
+OR `name` LIKE 'e%'
+OR `name` LIKE 'k%'
+OR `name` LIKE 'b%'
+ORDER BY `name`;
