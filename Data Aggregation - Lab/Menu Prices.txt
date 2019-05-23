@@ -1,0 +1,5 @@
+SELECT `category_id`,
+ROUND(AVG(`price`),2) AS `Average Product`,
+ROUND(AVG(`price`),2) AS `Cheapest Product`,
+ROUND(AVG(`price`),2) AS `Product`
+FROM `products`;
