@@ -1,0 +1,26 @@
+USE `soft_uni`;
+
+DELIMITER $$
+
+CREATE FUNCTION ufn_get_salary_level(salary DOUBLE)
+
+RETURNS VARCHAR(8)
+
+BEGIN
+   
+DECLARE level_of_salary VARCHAR(8);
+
+IF salary < 30000 THEN SET level_of_salary := 'Low';
+
+ELSEIF salary BETWEEN  30000 AND   50000 THEN SET level_of_salary := 'Average';
+
+ELSEIF salary >50000 THEN SET  level_of_salary := 'High';
+
+END IF;
+
+RETURN level_of_salary;
+
+END $$
+
+
+SELECT ufn_get_salary_level(20000);
